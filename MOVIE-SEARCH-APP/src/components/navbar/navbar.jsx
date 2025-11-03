@@ -16,9 +16,9 @@ function Navbar(){
                     
         </ul>
     
-            <form className="flex items-center rounded-full px-3 py-1 gap-2">
+            <form className="flex items-center rounded-full px-3 py-1 gap-2" onSubmit={get}>
                 <input required type="text"placeholder="enter-movie" className="text-gray-600 border border-blue-600 p-2 rounded-4xl text-2xl " onChange={(e)=>setdata(e.target.value)}/>
-                <button onClick={get} className="text-4xl text-red-600"> <IoSearch /></button>
+                <button  className="text-4xl text-red-600"> <IoSearch /></button>
             </form>
         
             {!theme?<button className="text-3xl text-cyan-600" onClick={()=>settheme(true)}><GoSun/></button>:<button onClick={()=>settheme(false)} className="text-3xl text-cyan-900"><FaMoon/></button>}
