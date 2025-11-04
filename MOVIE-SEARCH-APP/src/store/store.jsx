@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useAsyncError } from "react-router-dom";
 
 export const Helper=createContext();
 export function Gives({children}){
@@ -7,16 +8,19 @@ export function Gives({children}){
     let[loading,setloading]=useState(false);
     let [theme,settheme]=useState(false);
     let [minfo,setinfo]=useState([]);
+    let [img,setimg]=useState("");
+    let[msg,setmsg]=useState("");
     const apiurl = data?`https://www.omdbapi.com/?s=${data}&apikey=b62df0e5`:`https://www.omdbapi.com/?s=&apikey=b62df0e5`;
     useEffect(()=>{
         setTimeout(()=>{//debouncing 
             get();
 
-        },200);
+        },2900);
         
 
-    },[]);
+    },[data]);
    async function get(e){
+    
     if(e){
         e.preventDefault();
 
@@ -24,6 +28,7 @@ export function Gives({children}){
     
    console.log(data);
    setloading(true);
+   setmsg("");
    try{
 let data2=await fetch(apiurl,{
     
@@ -42,14 +47,17 @@ setinfo(result.Search||[]);
 
 catch(err){
     console.log("err occur",err);
+    setmsg("CHECK YOUR NETWORK CONNECTION");
 }
 finally{
     setloading(false);
+  
+   
 }
 
     }
     return (
-        <Helper.Provider value={{nav,setnav,setdata,get,theme,settheme,minfo,loading}}>
+        <Helper.Provider value={{nav,setnav,setdata,get,theme,settheme,minfo,loading,data,img,setimg,msg,setmsg}}>
             {children}
         </Helper.Provider>
     )

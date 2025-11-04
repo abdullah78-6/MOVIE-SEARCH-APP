@@ -8,14 +8,14 @@ import Hero from './components/navbar/HERO/hero'
 import Load from "./components/loader/loader"
 import Footer from './components/footer/footer'
 import Menue from './components/MOVIE-MENUE/movie-menue'
+import { Outlet } from 'react-router-dom'
 function Inner(){
   const {theme}=useContext(Helper);
 return <div className={` ${theme?"bg-gray-700 text-gray-100 transition ease-in-out duration-300":"transition ease-in-out duration-300"}`}>
 
     <Navbar/>
-    <Hero/>
-   
-    <Menue/>
+    <Outlet/>
+    
     <Footer/>
 
 </div>
